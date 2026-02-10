@@ -1,33 +1,8 @@
 pipeline {
-    agent any // Specifies where the pipeline will run (e.g., on any available agent/node)
-
+    agent any
     stages {
-        stage('Checkout Source Code') {
+        stage('Checkout & Greet') {
             steps {
-                // The 'checkout scm' step uses the SCM configuration defined in the job's settings.
-                // If you configured Git in the job setup, this step will use those settings
-                // to clone the repository into the workspace.
-                checkout scm
-                
-                // Alternatively, you can specify the repository URL and branch directly:
-                // git url: 'https://github.com', branch: 'main'
-
-                // You can add further checks here if needed, such as:
-                script {
-                    // Example: Check if a specific file exists after cloning
-                    if (fileExists('README.md')) {
-                        echo 'Repository cloned successfully and README.md found.'
-                    } else {
-                        error 'README.md not found!'
-                    }
-                }
-            }
-        }
-        
-        stage('Further Actions') {
-            steps {
-                echo 'Repository check complete. You can now add build, test, or deployment steps.'
-            }
-        }
-    }
-}
+                // This checks out your repository
+                git branch: 'main', 
+                    url: '
