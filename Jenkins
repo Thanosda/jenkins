@@ -1,8 +1,24 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout & Greet') {
+        stage('Build') {
             steps {
-                // This checks out your repository
-                git branch: 'main', 
-                    url: '
+                echo 'Building the application...'
+                // Add your build commands here (e.g., sh 'mvn clean install' or sh 'npm install')
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running automated tests...'
+                // Add your testing commands here (e.g., sh 'mvn test' or sh 'npm test')
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying to the environment...'
+                // Add your deployment scripts here (e.g., sh './deploy.sh')
+            }
+        }
+    }
+}
